@@ -3,6 +3,20 @@ gem 'rails', '3.2.8'
 gem 'sqlite3'
 gem 'thin'
 
+group :test, :development do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'spork-rails'
+  gem 'capybara'
+  gem 'capybara-webkit'
+end
+
+group :development do
+  gem 'growl'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+end
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
