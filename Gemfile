@@ -7,6 +7,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'spork-rails'
+  gem 'rb-fsevent', '~> 0.9.1'
   gem 'capybara'
   gem 'capybara-webkit'
 end
@@ -21,6 +22,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'twitter-bootstrap-rails'
 end
 
 gem 'jquery-rails'
