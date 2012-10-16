@@ -1,0 +1,30 @@
+<%= link_to 'Seminar-Proto', root_path, :class => 'brand' %>
+<ul class="nav">
+  <li><%= link_to 'All Challernges', root_path %></li>
+  <li><%= link_to 'All Answers', root_path %></li>
+  <li><%= link_to 'Search', root_path %></li>
+</ul>
+<% if user_signed_in? %>
+<div class="btn-group pull-right">
+  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    <i class="icon-user"></i><%= current_user.name %><span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li><%= link_to 'My Page', root_path %></li>
+    <li><%= link_to 'My Article', root_path %></li>
+    <li class="divider"></li>
+    <li><%= link_to 'Edit Account', root_path %></li>
+    <li class="divider"></li>
+    <li><%= link_to "Logout", logout_path %></li>
+  </ul>
+</div>
+<% else %>
+<div class="btn-group pull-right">
+  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    <i class="icon-user"></i>Guest<span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li><%= link_to 'Login(Github OAuth)', '/auth/github' %></li>
+  </ul>
+</div>
+<% end %>
