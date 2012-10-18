@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe Challenge do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should relate own user" do
+    octocat = FactoryGirl.create(:user)
+    challenge = FactoryGirl.create(:challenge)
+
+    challenge.user.should == octocat
+  end
 end

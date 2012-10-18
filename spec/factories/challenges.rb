@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :challenge do
-    title "MyString"
-    description "MyText"
+    title "github challenge!"
+    description "Regiter gist to this challenge."
     user_id 1
   end
 end
