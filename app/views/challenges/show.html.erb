@@ -1,12 +1,13 @@
 <h1><%= @challenge.title %></h1>
-<p>
-  <b>Question User:</b>
-  <%= @challenge.user.name %>
-</p>
+<ul>
+  <li><b>Question User:</b> <%= @challenge.user.name %></li>
+  <li><b>Number of Answer:</b> <%= @challenge.answers.count %></li>
+</ul>
 <p>
   <%= @challenge.description %>
 </p>
 
+<%= link_to "Show All Answers", challenge_answers_path(@challenge), {:class => "btn btn-info"}%>
 <% if user_signed_in? %>
   <%= link_to "Answer", new_challenge_answer_path(@challenge), {:class => "btn btn-primary"} %>
 <% end %>

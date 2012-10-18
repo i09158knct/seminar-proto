@@ -1,35 +1,17 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @answer.title %></h1>
+<ul>
+  <li>Author: <%= @answer.user.name %></li>
+  <li>Challenge: <%= link_to @challenge.title, @challenge %></li>
+</ul>
 
 <p>
-  <b>Title:</b>
-  <%= @answer.title %>
-</p>
-
-<p>
-  <b>Gist:</b>
-  <%= @answer.gist_id %>
-</p>
-
-<p>
-  <b>File names:</b>
-  <%= @answer.file_names %>
-</p>
-
-<p>
-  <b>Description:</b>
   <%= @answer.description %>
 </p>
 
-<p>
-  <b>Challenge:</b>
-  <%= @answer.challenge_id %>
-</p>
+<script src="https://gist.github.com/<%= @answer.gist_id %>.js"></script>
 
-<p>
-  <b>User:</b>
-  <%= @answer.user_id %>
-</p>
+<br />
 
-
-<%= link_to 'Edit', edit_challenge_answer_path(@challenge) %> |
-<%= link_to 'Back', challenge_answers_path(@challenge) %>
+<%= link_to 'Edit', edit_challenge_answer_path %><br />
+<%= link_to 'Back to Challenge Page', @challenge %><br />
+<%= link_to 'Back to Challenge Answers Page', challenge_answers_path %>

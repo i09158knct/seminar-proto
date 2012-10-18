@@ -11,12 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121018080904) do
+ActiveRecord::Schema.define(:version => 20121018144019) do
 
   create_table "answers", :force => true do |t|
     t.string   "title",        :null => false
     t.integer  "gist_id"
-    t.text     "file_names"
     t.text     "description"
     t.integer  "challenge_id"
     t.integer  "user_id",      :null => false
