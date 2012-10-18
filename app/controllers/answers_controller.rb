@@ -1,4 +1,9 @@
 class AnswersController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_owner!, :only => [:edit, :update, :destroy]
+  before_filter :set_correct_user_id_to_params, :only => [:create, :update]
+
+
   # GET /answers
   # GET /answers.json
   def index
@@ -34,7 +39,7 @@ class AnswersController < ApplicationController
 
   # GET /answers/1/edit
   def edit
-    @answer = Answer.find(params[:id])
+    @answer ||= Answer.find(params[:id])
   end
 
   # POST /answers
@@ -56,7 +61,7 @@ class AnswersController < ApplicationController
   # PUT /answers/1
   # PUT /answers/1.json
   def update
-    @answer = Answer.find(params[:id])
+    @answer ||= Answer.find(params[:id])
 
     respond_to do |format|
       if @answer.update_attributes(params[:answer])
@@ -72,7 +77,7 @@ class AnswersController < ApplicationController
   # DELETE /answers/1
   # DELETE /answers/1.json
   def destroy
-    @answer = Answer.find(params[:id])
+    @answer ||= Answer.find(params[:id])
     @answer.destroy
 
     respond_to do |format|
@@ -80,4 +85,16 @@ class AnswersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def authenticate_owner!
+      @answer = Answer.find(params[:id])
+      unless @answer.can_edit?(current_user)
+        redirect_to root_url, :alert => "You can't edit this answer."
+      end
+    end
+
+    def set_correct_user_id_to_params
+      params[:answer][:user_id] = current_user.id
+    end
 end
