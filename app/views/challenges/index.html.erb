@@ -1,0 +1,26 @@
+<h1>Listing challenges</h1>
+<table class="table">
+  <tr>
+    <th>Title</th>
+    <th>Question User</th>
+    <th>Answers</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @challenges.each do |challenge| %>
+  <tr>
+    <td><%= link_to challenge.title, challenge, {:class => "btn btn-block btn-mini"} %></td>
+    <td><%= challenge.user.name %></td>
+    <td><%= [1,2,3].count %></td>
+    <% if current_user && challenge.can_edit?(current_user) # TODO: move to management screen %>
+      <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
+      <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Challenge', new_challenge_path %>
