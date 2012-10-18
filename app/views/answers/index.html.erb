@@ -1,12 +1,7 @@
-<h1>Listing answers</h1>
-
-<table>
+<h1>All Answers of "<%= link_to @challenge.title, @challenge %>"</h1>
+<table class="table">
   <tr>
     <th>Title</th>
-    <th>Gist</th>
-    <th>File names</th>
-    <th>Description</th>
-    <th>Challenge</th>
     <th>User</th>
     <th></th>
     <th></th>
@@ -15,19 +10,16 @@
 
 <% @answers.each do |answer| %>
   <tr>
-    <td><%= answer.title %></td>
-    <td><%= answer.gist_id %></td>
-    <td><%= answer.file_names %></td>
-    <td><%= answer.description %></td>
-    <td><%= answer.challenge_id %></td>
-    <td><%= answer.user_id %></td>
-    <td><%= link_to 'Show', url_for([@challenge, answer]) %></td>
-    <td><%= link_to 'Edit', url_for(["edit", @challenge, answer]) %></td>
-    <td><%= link_to 'Destroy', url_for([@challenge, answer]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to answer.title, [@challenge, answer], {:class => "btn btn-block btn-mini"} %></td>
+    <td><%= answer.user.name %></td>
+    <% if current_user && answer.can_edit?(current_user) # TODO: move to management screen %>
+      <td><%= link_to 'Edit', ['edit', @challenge, answer] %></td>
+      <td><%= link_to 'Destroy', [@challenge, answer], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Answer', new_challenge_answer_path(@challenge) %>
+<%= link_to 'New Answer', new_challenge_answer_path %>
