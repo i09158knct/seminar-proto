@@ -1,7 +1,7 @@
 SeminarProto::Application.routes.draw do
-  resources :answers
-
-  resources :challenges
+  resources :challenges do
+    resources :answers
+  end
 
   root :to => "home#index"
 
