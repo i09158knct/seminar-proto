@@ -1,5 +1,12 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :provider, :uid
+  validates :name,
+    :presence => true
+  validates :provider,
+    :presence => true
+  validates :uid,
+    :presence => true,
+    :uniqueness => true
 
   def self.create_with_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
