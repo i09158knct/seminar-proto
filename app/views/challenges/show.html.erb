@@ -1,0 +1,10 @@
+<h1><%= @challenge.title %></h1>
+<p>
+  <b>Question User:</b>
+  <%= @challenge.user.name %>
+</p>
+<p>
+  <%= @challenge.description %>
+</p>
+
+<%= link_to 'Back', challenges_path %>
