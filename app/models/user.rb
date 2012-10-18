@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :provider, :uid
 
   has_many :challenges
+  has_many :answers
 
   validates :name,
     :presence => true
