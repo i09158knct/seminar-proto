@@ -3,7 +3,6 @@ class AnswersController < ApplicationController
   before_filter :authenticate_owner!, :only => [:edit, :update, :destroy]
   before_filter :set_correct_user_id_to_params, :only => [:create, :update]
 
-
   # GET /answers
   # GET /answers.json
   def index
