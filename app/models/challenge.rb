@@ -2,6 +2,7 @@ class Challenge < ActiveRecord::Base
   attr_accessible :description, :title, :user_id
 
   belongs_to :user
+  has_many :answers
 
   validates :title,
     :presence => true
