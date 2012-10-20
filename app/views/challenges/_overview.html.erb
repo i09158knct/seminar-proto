@@ -5,7 +5,7 @@
     <%= @challenge.description %>
   </p>
   <ul>
-    <li><b>Question User:</b> <%= @challenge.user.name %></li>
-    <li><b>Number of Answer:</b> <%= @challenge.answers.count %></li>
+    <li>Question User: <%= link_to @challenge.user.name , @challenge.user %></li>
+    <li>Number of Answer: <%= @challenge.answers.count %></li>
   </ul>
 </div>

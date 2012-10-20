@@ -1,8 +1,8 @@
 SeminarProto::Application.routes.draw do
   get "management_screen/index"
 
-  match "users/", :to => "users#index"
-  get "users/:id", :to => "users#show"
+  match "users/", :to => "users#index", :as => "users"
+  get "users/:id", :to => "users#show", :as => "user"
 
   resources :challenges do
     resources :answers

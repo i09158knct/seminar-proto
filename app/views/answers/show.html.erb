@@ -2,7 +2,7 @@
 
 <h1><%= @answer.title %></h1>
 <ul>
-  <li>Author: <%= @answer.user.name %></li>
+  <li>Author: <%= link_to @answer.user.name, @answer.user %></li>
   <li>Challenge: <%= link_to @challenge.title, @challenge %></li>
 </ul>
 
