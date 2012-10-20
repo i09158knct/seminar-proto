@@ -1,4 +1,6 @@
 SeminarProto::Application.routes.draw do
+  get "management_screen/index"
+
   match "users/", :to => "users#index"
   get "users/:id", :to => "users#show"
 
