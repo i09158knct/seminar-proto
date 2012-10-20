@@ -4,8 +4,6 @@
     <th>Title</th>
     <th>Question User</th>
     <th>Answers</th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @challenges.each do |challenge| %>
@@ -13,10 +11,6 @@
     <td><%= link_to challenge.title, challenge, {:class => "btn btn-block btn-mini"} %></td>
     <td><%= link_to challenge.user.name, challenge.user %></td>
     <td><%= link_to challenge.answers.count, challenge_answers_path(challenge), {:class => "btn btn-block btn-mini"} %></td>
-    <% if current_user && challenge.can_edit?(current_user) # TODO: move to management screen %>
-      <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
-      <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
   </tr>
 <% end %>
 </table>
