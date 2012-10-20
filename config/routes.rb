@@ -1,4 +1,7 @@
 SeminarProto::Application.routes.draw do
+  match "users/", :to => "users#index"
+  get "users/:id", :to => "users#show"
+
   resources :challenges do
     resources :answers
   end
