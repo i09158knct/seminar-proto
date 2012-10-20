@@ -1,8 +1,10 @@
 <%= link_to 'Seminar-Proto', root_path, :class => 'brand' %>
 <ul class="nav">
   <li><%= link_to 'All Challernges', challenges_path %></li>
-  <li><%= link_to 'Search', root_path %></li>
 </ul>
+<form class="navbar-search pull-left">
+  <input type="text" class="search-query" traget="/" placeholder="Search" name="aa">
+</form>
 <% if user_signed_in? %>
 <div class="btn-group pull-right">
   <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">

@@ -3,6 +3,7 @@ class AnswersController < ApplicationController
   before_filter :authenticate_owner!, :only => [:edit, :update, :destroy]
   before_filter :set_correct_user_id_to_params, :only => [:create, :update]
   before_filter :set_challenge
+  before_filter :add_breadcrumbs
 
   def index
     @answers = Answer.where(:challenge_id => @challenge.id)
@@ -15,6 +16,7 @@ class AnswersController < ApplicationController
 
   def show
     @answer = Answer.find(params[:id])
+    add_breadcrumb @answer.title, @answer
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,6 +26,7 @@ class AnswersController < ApplicationController
 
   def new
     @answer = Answer.new(:challenge_id => params[:challenge_id])
+    add_breadcrumb 'new', @answer
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,6 +37,7 @@ class AnswersController < ApplicationController
   # GET /answers/1/edit
   def edit
     @answer ||= Answer.find(params[:id])
+    add_breadcrumb "editing \"#{@answer.title}\"", @answer
   end
 
   def create
@@ -88,5 +92,11 @@ class AnswersController < ApplicationController
 
     def set_challenge
       @challenge = Challenge.find(params[:challenge_id])
+    end
+
+    def add_breadcrumbs
+      add_breadcrumb 'Challenges', challenges_path
+      add_breadcrumb @challenge.title, @challenge
+      add_breadcrumb 'Answers', challenge_answers_path(@challenge)
     end
 end

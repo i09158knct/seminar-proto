@@ -2,6 +2,7 @@ class ChallengesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :authenticate_owner!, :only => [:edit, :update, :destroy]
   before_filter :set_correct_user_id_to_params, :only => [:create, :update]
+  before_filter :add_breadcrumbs
 
   # GET /challenges
   # GET /challenges.json
@@ -18,6 +19,7 @@ class ChallengesController < ApplicationController
   # GET /challenges/1.json
   def show
     @challenge = Challenge.find(params[:id])
+    add_breadcrumb @challenge.title, @challenge
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,6 +31,7 @@ class ChallengesController < ApplicationController
   # GET /challenges/new.json
   def new
     @challenge = Challenge.new
+    add_breadcrumb 'new', @challenge
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,6 +42,7 @@ class ChallengesController < ApplicationController
   # GET /challenges/1/edit
   def edit
     @challenge ||= Challenge.find(params[:id])
+    add_breadcrumb "editing \"#{@challenge.title}\"", @challenge
   end
 
   # POST /challenges
@@ -95,5 +99,9 @@ class ChallengesController < ApplicationController
 
     def set_correct_user_id_to_params
       params[:challenge][:user_id] = current_user.id
+    end
+
+    def add_breadcrumbs
+      add_breadcrumb 'Challenges', challenges_path
     end
 end
