@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ManagementScreenController do
+describe ManagementController do
 
   describe "GET 'index'" do
     it "returns http success" do
