@@ -1,0 +1,11 @@
+<div class="well">
+  <h1><%= @challenge.title %></h1>
+  <h4>Description</h3>
+  <p>
+    <%= @challenge.description %>
+  </p>
+  <ul>
+    <li><b>Question User:</b> <%= @challenge.user.name %></li>
+    <li><b>Number of Answer:</b> <%= @challenge.answers.count %></li>
+  </ul>
+</div>
