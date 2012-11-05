@@ -13,7 +13,7 @@ class Answer < ActiveRecord::Base
   validates :user_id,
     :presence => true
 
-  def can_edit?(user)
+  def user_can_edit?(user)
     self.user_id == user.id
   end
 end

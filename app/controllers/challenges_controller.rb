@@ -92,7 +92,7 @@ class ChallengesController < ApplicationController
   private
     def authenticate_owner!
       @challenge = Challenge.find(params[:id])
-      unless @challenge.can_edit?(current_user)
+      unless @challenge.user_can_edit?(current_user)
         redirect_to root_url, :alert => "You can't edit this challenge."
       end
     end

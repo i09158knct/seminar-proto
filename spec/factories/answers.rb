@@ -4,7 +4,6 @@ FactoryGirl.define do
   factory :answer do
     title "MyString"
     gist_id 1
-    file_names "MyText"
     description "MyText"
     challenge_id 1
     user_id 1

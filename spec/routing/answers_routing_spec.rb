@@ -1,34 +1,37 @@
 require "spec_helper"
 
 describe AnswersController do
+  before(:each) do
+  end
+
   describe "routing" do
 
     it "routes to #index" do
-      get("/answers").should route_to("answers#index")
+      get("/challenges/1/answers").should route_to("answers#index", :challenge_id => "1")
     end
 
     it "routes to #new" do
-      get("/answers/new").should route_to("answers#new")
+      get("/challenges/1/answers/new").should route_to("answers#new", :challenge_id => "1")
     end
 
     it "routes to #show" do
-      get("/answers/1").should route_to("answers#show", :id => "1")
+      get("/challenges/1/answers/1").should route_to("answers#show", :id => "1", :challenge_id => "1")
     end
 
     it "routes to #edit" do
-      get("/answers/1/edit").should route_to("answers#edit", :id => "1")
+      get("/challenges/1/answers/1/edit").should route_to("answers#edit", :id => "1", :challenge_id => "1")
     end
 
     it "routes to #create" do
-      post("/answers").should route_to("answers#create")
+      post("/challenges/1/answers").should route_to("answers#create", :challenge_id => "1")
     end
 
     it "routes to #update" do
-      put("/answers/1").should route_to("answers#update", :id => "1")
+      put("/challenges/1/answers/1").should route_to("answers#update", :id => "1", :challenge_id => "1")
     end
 
     it "routes to #destroy" do
-      delete("/answers/1").should route_to("answers#destroy", :id => "1")
+      delete("/challenges/1/answers/1").should route_to("answers#destroy", :id => "1", :challenge_id => "1")
     end
 
   end

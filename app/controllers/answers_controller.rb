@@ -59,7 +59,7 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if @answer.update_attributes(params[:answer])
-        format.html { redirect_to challenge_answers_url(@challenge), notice: 'Answer was successfully updated.' }
+        format.html { redirect_to challenge_answer_url(@answer), notice: 'Answer was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -81,7 +81,7 @@ class AnswersController < ApplicationController
   private
     def authenticate_owner!
       @answer = Answer.find(params[:id])
-      unless @answer.can_edit?(current_user)
+      unless @answer.user_can_edit?(current_user)
         redirect_to root_url, :alert => "You can't edit this answer."
       end
     end

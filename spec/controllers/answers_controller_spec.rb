@@ -19,25 +19,37 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe AnswersController do
+  before(:each) do
+    @user = FactoryGirl.create(:user)
+    @challenge = FactoryGirl.create(:challenge)
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # Answer. As you add validations to Answer, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {
+      :title => "Answer!",
+      :description => "Answer!!",
+      :gist_id => "1",
+      :challenge_id => "1",
+      :user_id => 1
+    }
   end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # AnswersController. Be sure to keep this updated too.
   def valid_session
-    {}
+    {
+      :user_id => 1
+    }
   end
 
   describe "GET index" do
     it "assigns all answers as @answers" do
       answer = Answer.create! valid_attributes
-      get :index, {}, valid_session
+      get :index, {:challenge_id => "1"}, valid_session
       assigns(:answers).should eq([answer])
     end
   end
@@ -45,14 +57,14 @@ describe AnswersController do
   describe "GET show" do
     it "assigns the requested answer as @answer" do
       answer = Answer.create! valid_attributes
-      get :show, {:id => answer.to_param}, valid_session
+      get :show, {:id => answer.to_param, :challenge_id => "1"}, valid_session
       assigns(:answer).should eq(answer)
     end
   end
 
   describe "GET new" do
     it "assigns a new answer as @answer" do
-      get :new, {}, valid_session
+      get :new, {:challenge_id => "1"}, valid_session
       assigns(:answer).should be_a_new(Answer)
     end
   end
@@ -60,7 +72,7 @@ describe AnswersController do
   describe "GET edit" do
     it "assigns the requested answer as @answer" do
       answer = Answer.create! valid_attributes
-      get :edit, {:id => answer.to_param}, valid_session
+      get :edit, {:id => answer.to_param, :challenge_id => "1"}, valid_session
       assigns(:answer).should eq(answer)
     end
   end
@@ -69,19 +81,19 @@ describe AnswersController do
     describe "with valid params" do
       it "creates a new Answer" do
         expect {
-          post :create, {:answer => valid_attributes}, valid_session
+          post :create, {:answer => valid_attributes, :challenge_id => "1"}, valid_session
         }.to change(Answer, :count).by(1)
       end
 
       it "assigns a newly created answer as @answer" do
-        post :create, {:answer => valid_attributes}, valid_session
+        post :create, {:answer => valid_attributes, :challenge_id => "1"}, valid_session
         assigns(:answer).should be_a(Answer)
         assigns(:answer).should be_persisted
       end
 
       it "redirects to the created answer" do
-        post :create, {:answer => valid_attributes}, valid_session
-        response.should redirect_to(Answer.last)
+        post :create, {:answer => valid_attributes, :challenge_id => "1"}, valid_session
+        response.should redirect_to([@challenge, Answer.last])
       end
     end
 
@@ -89,14 +101,14 @@ describe AnswersController do
       it "assigns a newly created but unsaved answer as @answer" do
         # Trigger the behavior that occurs when invalid params are submitted
         Answer.any_instance.stub(:save).and_return(false)
-        post :create, {:answer => {}}, valid_session
+        post :create, {:answer => {}, :challenge_id => "1"}, valid_session
         assigns(:answer).should be_a_new(Answer)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Answer.any_instance.stub(:save).and_return(false)
-        post :create, {:answer => {}}, valid_session
+        post :create, {:answer => {}, :challenge_id => "1"}, valid_session
         response.should render_template("new")
       end
     end
@@ -110,20 +122,20 @@ describe AnswersController do
         # specifies that the Answer created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Answer.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => answer.to_param, :answer => {'these' => 'params'}}, valid_session
+        Answer.any_instance.should_receive(:update_attributes).with({'these' => 'params', 'user_id' => 1})
+        put :update, {:id => answer.to_param, :answer => {'these' => 'params'}, :challenge_id => "1"}, valid_session
       end
 
       it "assigns the requested answer as @answer" do
         answer = Answer.create! valid_attributes
-        put :update, {:id => answer.to_param, :answer => valid_attributes}, valid_session
+        put :update, {:id => answer.to_param, :answer => valid_attributes, :challenge_id => "1"}, valid_session
         assigns(:answer).should eq(answer)
       end
 
       it "redirects to the answer" do
         answer = Answer.create! valid_attributes
-        put :update, {:id => answer.to_param, :answer => valid_attributes}, valid_session
-        response.should redirect_to(answer)
+        put :update, {:id => answer.to_param, :answer => valid_attributes, :challenge_id => "1"}, valid_session
+        response.should redirect_to([@challenge, answer])
       end
     end
 
@@ -132,7 +144,7 @@ describe AnswersController do
         answer = Answer.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Answer.any_instance.stub(:save).and_return(false)
-        put :update, {:id => answer.to_param, :answer => {}}, valid_session
+        put :update, {:id => answer.to_param, :answer => {}, :challenge_id => "1"}, valid_session
         assigns(:answer).should eq(answer)
       end
 
@@ -140,7 +152,7 @@ describe AnswersController do
         answer = Answer.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Answer.any_instance.stub(:save).and_return(false)
-        put :update, {:id => answer.to_param, :answer => {}}, valid_session
+        put :update, {:id => answer.to_param, :answer => {}, :challenge_id => "1"}, valid_session
         response.should render_template("edit")
       end
     end
@@ -150,14 +162,14 @@ describe AnswersController do
     it "destroys the requested answer" do
       answer = Answer.create! valid_attributes
       expect {
-        delete :destroy, {:id => answer.to_param}, valid_session
+        delete :destroy, {:id => answer.to_param, :challenge_id => "1"}, valid_session
       }.to change(Answer, :count).by(-1)
     end
 
     it "redirects to the answers list" do
       answer = Answer.create! valid_attributes
-      delete :destroy, {:id => answer.to_param}, valid_session
-      response.should redirect_to(answers_url)
+      delete :destroy, {:id => answer.to_param, :challenge_id => "1"}, valid_session
+      response.should redirect_to(challenge_answers_url(@challenge))
     end
   end
 

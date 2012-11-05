@@ -12,8 +12,13 @@ group :test, :development do
   gem 'capybara-webkit'
 end
 
+group :test do
+  gem 'cucumber'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+end
+
 group :development do
-  gem 'growl'
   gem 'guard-rspec'
   gem 'guard-spork'
 end

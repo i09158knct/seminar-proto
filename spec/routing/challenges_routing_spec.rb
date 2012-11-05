@@ -1,6 +1,9 @@
 require "spec_helper"
 
 describe ChallengesController do
+  before(:each) do
+  end
+
   describe "routing" do
 
     it "routes to #index" do
