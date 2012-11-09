@@ -1,0 +1,8 @@
+(function($) {
+  $(function() {
+    var gistFiles = new SeminarProto.Collections.GistFilesCollection();
+    var editorView = new SeminarProto.Views.GistEditor.EditorView({gistFiles: gistFiles});
+
+    editorView.render();
+  });
+}).call(this, jQuery);

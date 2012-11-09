@@ -4,7 +4,6 @@
     <th>Title</th>
     <th>User</th>
   </tr>
-
 <% @answers.each do |answer| %>
   <tr>
     <td><%= link_to answer.title, [@challenge, answer], {:class => "btn btn-block btn-mini"} %></td>

@@ -2,8 +2,8 @@ class AnswersController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :authenticate_owner!, :only => [:edit, :update, :destroy]
   before_filter :set_correct_user_id_to_params, :only => [:create, :update]
-  before_filter :set_challenge
-  before_filter :add_breadcrumbs
+  before_filter :set_challenge, :except => [:create_gist]
+  before_filter :add_breadcrumbs, :except => [:create_gist]
 
   def index
     @answers = Answer.where(:challenge_id => @challenge.id)
@@ -76,6 +76,17 @@ class AnswersController < ApplicationController
       format.html { redirect_to challenge_answers_url(@challenge) }
       format.json { head :no_content }
     end
+  end
+
+  def create_gist
+    # TODO: fixme, this should be non blocking process.
+    name = current_user.name
+    oauth_token = session[:user_github_oauth_token]
+    client = Octokit::Client.new(:login => name, :oauth_token => oauth_token)
+    gist = params[:gist]
+    gist["public"] = true
+    result = client.create_gist(gist)
+    render :json => result.to_json
   end
 
   private

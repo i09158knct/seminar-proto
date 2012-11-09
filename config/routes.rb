@@ -7,6 +7,7 @@ SeminarProto::Application.routes.draw do
   resources :challenges do
     resources :answers
   end
+  post "/create_gist", :to => "answers#create_gist"
 
   root :to => "home#index"
 

@@ -1,0 +1,10 @@
+(function($) {
+  $(function() {
+    var gists = new SeminarProto.Collections.GistsCollection();
+    var pagerView = new SeminarProto.Views.GistsExplorer.PagerView({gists: gists});
+    var gistsView = new SeminarProto.Views.GistsExplorer.GistsView({gists: gists});
+
+    pagerView.render();
+    gistsView.render();
+  });
+}).call(this, jQuery);
