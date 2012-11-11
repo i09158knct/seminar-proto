@@ -37,7 +37,8 @@ class AnswersController < ApplicationController
   # GET /answers/1/edit
   def edit
     @answer ||= Answer.find(params[:id])
-    add_breadcrumb "editing \"#{@answer.title}\"", @answer
+    add_breadcrumb @answer.title, challenge_answer_path(@answer)
+    add_breadcrumb "edit"
   end
 
   def create

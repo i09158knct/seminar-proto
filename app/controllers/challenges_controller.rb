@@ -42,7 +42,8 @@ class ChallengesController < ApplicationController
   # GET /challenges/1/edit
   def edit
     @challenge ||= Challenge.find(params[:id])
-    add_breadcrumb "editing \"#{@challenge.title}\"", @challenge
+    add_breadcrumb @challenge.title, @challenge
+    add_breadcrumb "edit"
   end
 
   # POST /challenges

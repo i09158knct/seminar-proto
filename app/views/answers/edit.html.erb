@@ -1,7 +1,9 @@
 <h1>Editing answer</h1>
 
 <%= render 'challenges/overview' %>
-<%= render 'form' %>
-<%= render 'extensions-panel' %>
-
-<%= link_to 'Show', challenge_answer_path(@challenge) %><br />
+<div class="span4">
+  <%= render 'form' %>
+</div>
+<div class="span7">
+  <%= render 'extensions-panel' %>
+</div>

@@ -1,4 +1,4 @@
-<%= form_for([@answer.challenge, @answer], :html => {:class => "span4"}) do |f| %>
+<%= form_for([@answer.challenge, @answer]) do |f| %>
   <% if @answer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
@@ -28,6 +28,6 @@
     <%= f.number_field :challenge_id, :class => "" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn" %>
   </div>
 <% end %>
