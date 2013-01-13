@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-SeminarProto::Application.config.secret_token = 'c36306e7072729030c75880f28095957f0bc3fca7a7db8cc1104d9107404a7798e4c73401906a0c104d91f828479959c54a0580acfec10ac0a969e10995bd87c'
+SeminarProto::Application.config.secret_token = ENV['SEMINAR_PROTO_SECRET_TOKEN'] || '379e9e32731a06efe8f832ab91af83407f3917e6a58ab7ce9b3e114748b58db370910ca962a3eee4b0f2ca72b22eabf8d7471b4a7525257e4a84d84ecfd462fa'
