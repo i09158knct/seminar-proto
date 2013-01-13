@@ -3,7 +3,6 @@
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <li><a href="#tab-gists-explorer" data-toggle="tab">Explore Gists</a></li>
-      <li><a href="#tab-gist-editor" data-toggle="tab">Create New Gist</a></li>
     </ul>
     <div class="tab-content">
 
@@ -12,16 +11,9 @@
         <div id="gists-explorer-gists"></div>
       </div>
 
-      <div class="tab-pane" id="tab-gist-editor">
-        <div id="gist-editor"></div>
-      </div>
-
     </div>
   </div>
 </div>
 <script type="text/javascript">
   <%= render 'gists_explorer.js' %>
-</script>
-<script type="text/javascript">
-  <%= render 'gist_editor.js' %>
 </script>

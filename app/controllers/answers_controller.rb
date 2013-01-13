@@ -79,17 +79,6 @@ class AnswersController < ApplicationController
     end
   end
 
-  def create_gist
-    # TODO: fixme, this should be non blocking process.
-    name = current_user.name
-    oauth_token = session[:user_github_oauth_token]
-    client = Octokit::Client.new(:login => name, :oauth_token => oauth_token)
-    gist = params[:gist]
-    gist["public"] = true
-    result = client.create_gist(gist)
-    render :json => result.to_json
-  end
-
   private
     def authenticate_owner!
       @answer = Answer.find(params[:id])
