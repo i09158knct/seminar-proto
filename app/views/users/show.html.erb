@@ -5,7 +5,7 @@
     <th>Answers</th>
   </tr>
 
-  <% @user.challenges.each do |challenge| %>
+  <% @challenges.each do |challenge| %>
   <tr>
     <td><%= link_to challenge.title, challenge %></td>
     <td><%= challenge.answers.count %></td>
@@ -18,7 +18,7 @@
     <th>Challenge</th>
   </tr>
 
-  <% @user.answers.each do |answer| %>
+  <% @answers.each do |answer| %>
   <tr>
     <td><%= link_to answer.title, [answer.challenge, answer] %></td>
     <td><%= link_to answer.challenge.title, answer.challenge %></td>

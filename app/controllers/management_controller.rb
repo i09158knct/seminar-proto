@@ -3,6 +3,6 @@ class ManagementController < ApplicationController
   def index
     @user = current_user
     @challenges = @user.challenges
-    @answers = @user.answers
+    @answers = @user.answers.includes(:challenge)
   end
 end

@@ -5,5 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @challenges = @user.challenges
+    @answers = @user.answers.includes(:challenge)
   end
 end

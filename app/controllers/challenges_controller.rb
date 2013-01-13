@@ -7,7 +7,7 @@ class ChallengesController < ApplicationController
   # GET /challenges
   # GET /challenges.json
   def index
-    @challenges = Challenge.all
+    @challenges = Challenge.order(:id).includes(:user)
 
     respond_to do |format|
       format.html # index.html.erb
