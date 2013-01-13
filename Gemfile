@@ -4,6 +4,8 @@ gem 'thin'
 
 group :test, :development do
   gem 'sqlite3'
+  gem 'therubyracer'
+  gem "less-rails"
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'spork-rails'
