@@ -21,6 +21,7 @@ group :test do
 end
 
 group :development do
+  gem 'bullet'
   gem 'guard-rspec'
   gem 'guard-spork'
 end
