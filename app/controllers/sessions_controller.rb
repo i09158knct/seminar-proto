@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id
     session[:user_github_oauth_token] = auth.credentials.token
     flash[:info] = "Logged in!"
-    redirect_to root_url
+    redirect_to session[:return_to] || root_url
   end
 
   def destroy
