@@ -5,12 +5,13 @@ class SessionsController < ApplicationController
            User.create_with_omniauth(auth)
     session[:user_id] = user.id
     session[:user_github_oauth_token] = auth.credentials.token
-
-    redirect_to root_url, :notice => "Logged in!"
+    flash[:info] = "Logged in!"
+    redirect_to root_url
   end
 
   def destroy
     reset_session
-    redirect_to root_url, :notice => "Logged out!"
+    flash[:info] = "Logged out!"
+    redirect_to root_url
   end
 end
