@@ -1,7 +1,7 @@
 <div class="well">
   <h1><%= @challenge.title %></h1>
   <p class="lead">
-    <%= @challenge.description %>
+    <%= markdown @challenge.description %>
   </p>
   <ul>
     <li>Question-master: <%= link_to @challenge.user.name , @challenge.user %></li>

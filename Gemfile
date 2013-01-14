@@ -42,4 +42,4 @@ gem 'omniauth-github', '1.0.1'
 gem 'twitter-bootstrap-rails'
 gem 'rails-backbone'
 gem 'octokit'
-
+gem 'redcarpet'

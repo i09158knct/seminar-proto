@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe SearchController do
 
-  describe "GET 'search'" do
+  describe "GET 'show'" do
     it "returns http success" do
-      get 'search'
+      get 'show'
       response.should be_success
     end
   end
