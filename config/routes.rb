@@ -1,4 +1,8 @@
 SeminarProto::Application.routes.draw do
+  get "search/search"
+
+  get "/search", :to => "search#show"
+
   get "management/index", :as => "management"
 
   match "users/", :to => "users#index", :as => "users"
