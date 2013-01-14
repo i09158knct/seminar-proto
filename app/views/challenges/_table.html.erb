@@ -1,0 +1,18 @@
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Question-master</th>
+      <th>Answers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @challenges.each do |challenge| %>
+      <tr>
+        <td><%= link_to challenge.title, challenge %></td>
+        <td><%= link_to challenge.user.name, challenge.user %></td>
+        <td><%= link_to challenge.answers.count, challenge_answers_path(challenge) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

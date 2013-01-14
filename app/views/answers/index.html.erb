@@ -1,21 +1,5 @@
 <h1>All Answers of "<%= link_to @challenge.title, @challenge %>"</h1>
-<table class="table table-bordered table-hover">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>User</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @answers.each do |answer| %>
-      <tr>
-        <td><%= link_to answer.title, [@challenge, answer] %></td>
-        <td><%= link_to answer.user.name, answer.user %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<%= render "table" %>
 <br />
 
 <%= link_to 'New Answer', new_challenge_answer_path %>
