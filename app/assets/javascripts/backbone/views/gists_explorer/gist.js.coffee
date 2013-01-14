@@ -13,8 +13,6 @@ class SeminarProto.Views.GistsExplorer.GistView extends Backbone.View
     id = @model.get("id")
     description = @model.get("description")
     $("#answer_gist_id").val(id)
-    $("#answer_title").val(description)
-    $("#answer_description").val(description)
 
   render: ->
     @$el.html(@template(@model.toJSON()))

@@ -12,19 +12,26 @@ class SeminarProto.Views.GistsExplorer.PagerView extends Backbone.View
 
   fetch: (e) ->
     e.preventDefault()
-
     userName = @$("#gists-user-name").val()
+    page = @$el.find("#gists-page").val()
+
+    if localStorage
+      gists = localStorage.getItem("gists " + userName + page)
+      if gists
+        @options.gists.reset JSON.parse(gists)
+
     gh3user = new Gh3.User(userName)
     gh3gists = new Gh3.Gists(gh3user)
 
-    page = @$el.find("#gists-page").val()
     gh3gists.fetch {page: page}, null, (err, res) =>
       if err
         alert("Error")
         return
 
-      @options.gists.reset res.gists
-
+      gists = res.gists
+      @options.gists.reset gists
+      if localStorage
+        localStorage.setItem("gists " + userName + page, JSON.stringify(gists))
 
 
   render: ->
