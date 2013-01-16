@@ -8,11 +8,36 @@
   </thead>
   <tbody>
     <% @challenges.each do |challenge| %>
-      <tr>
-        <td><%= link_to challenge.title, challenge %></td>
-        <td><%= link_to challenge.user.name, challenge.user %></td>
-        <td><%= link_to challenge.answers.count, challenge_answers_path(challenge) %></td>
+      <tr class="challenge">
+        <td class="challenge-title"><%= link_to challenge.title, challenge %></td>
+        <td class="challenge-master"><%= link_to challenge.user.name, challenge.user %></td>
+        <td class="challenge-answers"><%= link_to challenge.answers.count, challenge_answers_path(challenge) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<script type="text/javascript">
+  jQuery(function($) {
+    var
+      $challenges = $(".challenge"),
+      currentUserName = SeminarProto.getCurrentUserName(),
+      buildLink = SeminarProto.buildLink;
+
+    $challenges.each(function(index) {
+      var
+        $challenge = $challenges.eq(index),
+        $title = $challenge.find(".challenge-title"),
+        $master = $challenge.find(".challenge-master"),
+        master = $master.text(),
+        editHref,
+        editLink;
+
+      if (master === currentUserName) {
+        editHref = $title.find("a").attr("href") + "/edit";
+        editLink = buildLink("Edit", editHref, "btn btn-warning pull-right");
+        $title.append(editLink);
+      }
+    });
+  });
+</script>

@@ -1,10 +1,11 @@
 <div class="well">
   <h1><%= @challenge.title %></h1>
+  <ul>
+    <li>Question-master: <%= link_to @challenge.user.name , @challenge.user %></li>
+    <li>Number of Answers: <%= @challenge.answers.count %></li>
+  </ul>
+  <hr>
   <p class="lead">
     <%= markdown @challenge.description %>
   </p>
-  <ul>
-    <li>Question-master: <%= link_to @challenge.user.name , @challenge.user %></li>
-    <li>Number of Answer: <%= @challenge.answers.count %></li>
-  </ul>
 </div>
