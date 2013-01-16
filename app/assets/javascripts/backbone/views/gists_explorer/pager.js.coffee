@@ -14,6 +14,7 @@ class SeminarProto.Views.GistsExplorer.PagerView extends Backbone.View
     e.preventDefault()
     userName = @$("#gists-user-name").val()
     page = @$el.find("#gists-page").val()
+    e.target.textContent = "loading..."
 
     if localStorage
       gists = localStorage.getItem("gists " + userName + page)
@@ -30,6 +31,7 @@ class SeminarProto.Views.GistsExplorer.PagerView extends Backbone.View
 
       gists = res.gists
       @options.gists.reset gists
+      e.target.textContent = "Fetch"
       if localStorage
         localStorage.setItem("gists " + userName + page, JSON.stringify(gists))
 
