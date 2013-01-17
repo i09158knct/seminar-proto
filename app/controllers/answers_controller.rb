@@ -6,7 +6,9 @@ class AnswersController < ApplicationController
   before_filter :add_breadcrumbs, :except => [:create_gist]
 
   def index
-    @answers = Answer.where(:challenge_id => @challenge.id).includes(:user)
+    @answers = Answer.where(:challenge_id => @challenge.id)
+      .includes(:user)
+      .page params[:page]
 
     respond_to do |format|
       format.html # index.html.erb
