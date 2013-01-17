@@ -2,8 +2,8 @@ class AnswersController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :authenticate_owner!, :only => [:edit, :update, :destroy]
   before_filter :set_correct_user_id_to_params, :only => [:create, :update]
-  before_filter :set_challenge, :except => [:create_gist]
-  before_filter :add_breadcrumbs, :except => [:create_gist]
+  before_filter :set_challenge
+  before_filter :add_breadcrumbs
 
   def index
     @answers = Answer.where(:challenge_id => @challenge.id)
@@ -62,7 +62,7 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if @answer.update_attributes(params[:answer])
-        format.html { redirect_to challenge_answer_url(@answer), notice: 'Answer was successfully updated.' }
+        format.html { redirect_to [@challenge, @answer], notice: 'Answer was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
