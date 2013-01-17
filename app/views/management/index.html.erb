@@ -11,8 +11,8 @@
       <tr>
         <td><%= link_to challenge.title, challenge %>
         <td><%= link_to challenge.answers.count, challenge_answers_path(challenge) %></td>
-        <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
-        <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_challenge_path(challenge), class: 'btn btn-warning' %></td>
+        <td><%= button_to 'Destroy', challenge, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,8 +34,8 @@
       <tr>
         <td><%= link_to answer.title, [answer.challenge, answer] %></td>
         <td><%= link_to answer.challenge.title, answer.challenge %></td>
-        <td><%= link_to 'Edit', ['edit', answer.challenge, answer] %></td>
-        <td><%= link_to 'Destroy', [answer.challenge, answer], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', ['edit', answer.challenge, answer], class: 'btn btn-warning' %></td>
+        <td><%= button_to 'Destroy', [answer.challenge, answer], class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
