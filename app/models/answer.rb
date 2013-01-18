@@ -1,5 +1,5 @@
 class Answer < ActiveRecord::Base
-  attr_accessible :challenge_id, :description, :gist_id, :title, :user_id
+  attr_accessible :challenge_id, :description, :gist_id, :title, :user_id, :tag_list
 
   belongs_to :user
   belongs_to :challenge
@@ -12,6 +12,8 @@ class Answer < ActiveRecord::Base
     :presence => true
   validates :user_id,
     :presence => true
+
+  acts_as_taggable
 
   def user_can_edit?(user)
     self.user_id == user.id

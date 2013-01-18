@@ -16,6 +16,10 @@
     <%= f.text_field :title, :class => "" %>
   </div>
   <div class="field">
+    <%= f.label :tag_list %><br />
+    <%= f.text_field :tag_list %>
+  </div>
+  <div class="field">
     <%= f.label :gist_id %><br />
     <%= f.number_field :gist_id, :class => ""%>
   </div>
@@ -31,3 +35,9 @@
     <%= f.submit :class => "btn" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  jQuery(function($) {
+    $("#answer_tag_list").tagsInput({width:'auto'});
+  });
+</script>

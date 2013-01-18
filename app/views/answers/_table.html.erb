@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>Title</th>
+      <th>Tags</th>
       <th>User</th>
     </tr>
   </thead>
@@ -9,6 +10,7 @@
     <% @answers.each do |answer| %>
       <tr class="answer">
         <td class="answer-title"><%= link_to answer.title, [@challenge, answer] %></td>
+        <td class="answer-tags"><%= answer.tag_list %></td>
         <td class="answer-master"><%= link_to answer.user.name, answer.user %></td>
       </tr>
     <% end %>

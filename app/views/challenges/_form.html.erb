@@ -16,6 +16,10 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
+    <%= f.label :tag_list %><br />
+    <%= f.text_field :tag_list %>
+  </div>
+  <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description, :class => "span12" %>
   </div>
@@ -23,3 +27,9 @@
     <%= f.submit :class => "btn" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  jQuery(function($) {
+    $("#challenge_tag_list").tagsInput({width:'auto'});
+  });
+</script>

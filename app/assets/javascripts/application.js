@@ -15,6 +15,7 @@
 //= require twitter/bootstrap
 //= require underscore
 //= require gh3.js
+//= require jquery.tagsinput.js
 //= require backbone
 //= require backbone_rails_sync
 //= require backbone_datalink

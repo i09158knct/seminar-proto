@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>Title</th>
+      <th>Tags</th>
       <th>Question-master</th>
       <th>Answers</th>
     </tr>
@@ -10,6 +11,7 @@
     <% @challenges.each do |challenge| %>
       <tr class="challenge">
         <td class="challenge-title"><%= link_to challenge.title, challenge %></td>
+        <td class="challenge-tags"><%= challenge.tag_list %></td>
         <td class="challenge-master"><%= link_to challenge.user.name, challenge.user %></td>
         <td class="challenge-answers"><%= link_to challenge.answers.count, challenge_answers_path(challenge) %></td>
       </tr>
