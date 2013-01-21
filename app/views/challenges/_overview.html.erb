@@ -1,8 +1,19 @@
 <div class="well">
-  <h1><%= @challenge.title %></h1>
+  <div class="row">
+    <div class="span7">
+      <h1><%= @challenge.title %></h1>
+    </div>
+    <div class="span4">
+      <div class=" pull-right" id="challenge-action-panel">
+        <span class="badge badge-success"><i class="icon-star"></i>0</span>
+        <button class="btn">Star</button>
+        <button class="btn">Watch</button>
+      </div>
+    </div>
+  </div>
   <ul>
-    <li>Question-master: <%= link_to @challenge.user.name , @challenge.user %></li>
-    <li>Number of Answers: <%= @challenge.answers.count %></li>
+    <li>Question-master: <%= link_to @challenge.user.name , @challenge.user, :id => "question-master" %></li>
+    <li>Number of Answers: <%= link_to @challenge.answers.count, challenge_answers_path(@challenge) %></li>
     <li>Tag: <%= @challenge.tag_list %></li>
   </ul>
   <hr>
@@ -10,3 +21,27 @@
     <%= markdown @challenge.description %>
   </p>
 </div>
+<script type="text/javascript">
+  jQuery(function ($) {
+    var
+      userName = SeminarProto.getCurrentUserName(),
+      masterName = $("#question-master").text(),
+      text,
+      href,
+      className,
+      link;
+
+    if (userName === masterName) {
+      text = "Edit";
+      href = "<%= edit_challenge_path @challenge %>";
+      className = "btn btn-warning"
+      link = SeminarProto.buildLink(
+        text,
+        href,
+        className
+      );
+
+      $("#challenge-action-panel").append(link);
+    }
+  });
+</script>

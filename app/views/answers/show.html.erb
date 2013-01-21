@@ -1,14 +1,52 @@
 <%= render 'challenges/overview' %>
-
-<h1><%= @answer.title %></h1>
+<div class="row">
+  <div class="span8">
+    <h1><%= @answer.title %></h1>
+  </div>
+  <div class="span4">
+    <div class=" pull-right" id="answer-action-panel">
+      <span class="badge badge-success"><i class="icon-star"></i>0</span>
+      <button class="btn">Star</button>
+      <button class="btn">Watch</button>
+    </div>
+  </div>
+</div>
 <ul>
-  <li>Author: <%= link_to @answer.user.name, @answer.user %></li>
+  <li>Author: <%= link_to @answer.user.name, @answer.user, :id => "answer-author" %></li>
   <li>Challenge: <%= link_to @challenge.title, @challenge %></li>
   <li>Tag: <%= @answer.tag_list %></li>
 </ul>
+<hr>
+    <p>
+      <%= markdown @answer.description %>
+    </p>
+<hr>
+<div>
+  <h2>Code</h2>
+  <script src="https://gist.github.com/<%= @answer.gist_id %>.js"></script>
+</div>
 
-<p>
-  <%= markdown @answer.description %>
-</p>
+<script type="text/javascript">
+  jQuery(function ($) {
+    var
+      userName = SeminarProto.getCurrentUserName(),
+      authorName = $("#answer-author").text(),
+      text,
+      href,
+      className,
+      link;
 
-<script src="https://gist.github.com/<%= @answer.gist_id %>.js"></script>
+    if (userName === authorName) {
+      text = "Edit";
+      href = "<%= edit_challenge_answer_path @challenge, @answer %>";
+      className = "btn btn-warning"
+      link = SeminarProto.buildLink(
+        text,
+        href,
+        className
+      );
+
+      $("#answer-action-panel").append(link);
+    }
+  });
+</script>
