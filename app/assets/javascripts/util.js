@@ -1,5 +1,10 @@
 SeminarProto = SeminarProto || {};
 ;(function _util() {
+  var
+    regexFindId = /^user_id=(.*)/,
+    name,
+    id;
+
   SeminarProto.buildLink = function(text, href, classNames) {
     var
       link = document.createElement("a");
@@ -10,6 +15,22 @@ SeminarProto = SeminarProto || {};
   };
 
   SeminarProto.getCurrentUserName = function() {
-    return jQuery("#current-user-name").text();
+    name = name || jQuery("#current-user-name").text();
+    return name;
+  };
+  SeminarProto.getCurrentUserId = function() {
+    var
+      cookies = document.cookie.split("; "),
+      result,
+      i;
+
+    for (i = cookies.length; i--;) {
+      result = cookies[i].match(regexFindId);
+      if (result) {
+        return +result[1];
+      }
+    }
+
+    throw new Error("User ID Not Found");
   };
 }).call(this);

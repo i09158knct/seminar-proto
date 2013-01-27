@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :challenges
   has_many :answers
+  has_many :reviews
 
   validates :name,
     :presence => true

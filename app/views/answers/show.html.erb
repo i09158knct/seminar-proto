@@ -1,32 +1,58 @@
 <%= render 'challenges/overview' %>
+
 <div class="row">
-  <div class="span8">
-    <h1><%= @answer.title %></h1>
-  </div>
-  <div class="span4">
-    <div class=" pull-right" id="answer-action-panel">
-      <span class="badge badge-success"><i class="icon-star"></i>0</span>
-      <button class="btn">Star</button>
-      <button class="btn">Watch</button>
+  <div class="span12" id="answer-gist">
+    <div class="row">
+      <div class="span7">
+        <h1><%= @answer.title %></h1>
+      </div>
+      <div class="">
+        <div class=" pull-right" id="answer-action-panel">
+          <span class="badge badge-success"><i class="icon-star"></i>0</span>
+          <button class="btn">Star</button>
+          <button class="btn">Watch</button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<ul>
-  <li>Author: <%= link_to @answer.user.name, @answer.user, :id => "answer-author" %></li>
-  <li>Challenge: <%= link_to @challenge.title, @challenge %></li>
-  <li>Tag: <%= @answer.tag_list %></li>
-</ul>
-<hr>
+    <ul>
+      <li>Author: <%= link_to @answer.user.name, @answer.user %></li>
+      <li>Challenge: <%= link_to @challenge.title, @challenge %></li>
+      <li>Tag: <%= @answer.tag_list %></li>
+    </ul>
+
     <p>
       <%= markdown @answer.description %>
     </p>
-<hr>
-<div>
-  <h2>Code</h2>
-  <script src="https://gist.github.com/<%= @answer.gist_id %>.js"></script>
+
+    <script src="https://gist.github.com/<%= @answer.gist_id %>.js"></script>
+    <a class="btn btn-info" id="show-all-reviews">Show All Reviews</a>
+  </div>
+  <div class="span5" id="reviewer">
+    <div id="reviews"></div>
+  </div>
 </div>
 
+
 <script type="text/javascript">
+  jQuery(function($) {
+    var
+      reviews = <%= Review.where(:answer_id => @answer.id).to_json.html_safe %>;
+
+    $("#reviewer").toggle();
+    new SeminarProto.Routers.ReviewsRouter({
+      reviews: reviews
+    });
+    Backbone.history.start();
+
+    $("#show-all-reviews").click(function(event) {
+      $("#answer-gist").toggleClass("span12 span7");
+      $(event.target).toggleClass("disabled");
+      $("#reviewer").toggle();
+    });
+
+    $("#show-all-reviews").click();
+  });
+
   jQuery(function ($) {
     var
       userName = SeminarProto.getCurrentUserName(),

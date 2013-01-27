@@ -5,6 +5,8 @@ class SessionsController < ApplicationController
            User.create_with_omniauth(auth)
     session[:user_id] = user.id
     session[:user_github_oauth_token] = auth.credentials.token
+    cookies[:user_id] = user.id
+    cookies[:user_name] = user.name
     flash[:info] = "Logged in!"
     redirect_to session[:return_to] || root_url
   end

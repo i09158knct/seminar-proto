@@ -1,0 +1,40 @@
+<h1>Edit review</h1>
+
+<form id="edit-review" name="review">
+  <div class="field">
+    <label for="answer_id"> answer_id:</label>
+    <input type="text" name="answer_id" id="answer_id" value="<%= answer_id %>" >
+  </div>
+
+  <div class="field">
+    <label for="body"> body:</label>
+    <input type="text" name="body" id="body" value="<%= body %>" >
+  </div>
+
+  <div class="field">
+    <label for="gist_commit_id"> gist_commit_id:</label>
+    <input type="text" name="gist_commit_id" id="gist_commit_id" value="<%= gist_commit_id %>" >
+  </div>
+
+  <div class="field">
+    <label for="gist_id"> gist_id:</label>
+    <input type="text" name="gist_id" id="gist_id" value="<%= gist_id %>" >
+  </div>
+
+  <div class="field">
+    <label for="targets"> targets:</label>
+    <input type="text" name="targets" id="targets" value="<%= targets %>" >
+  </div>
+
+  <div class="field">
+    <label for="user_id"> user_id:</label>
+    <input type="text" name="user_id" id="user_id" value="<%= user_id %>" >
+  </div>
+
+  <div class="actions">
+    <input type="submit" value="Update Review" />
+  </div>
+
+</form>
+
+<a href="#/index">Back</a>

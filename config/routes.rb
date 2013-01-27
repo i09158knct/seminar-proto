@@ -9,8 +9,13 @@ SeminarProto::Application.routes.draw do
   get "users/:id", :to => "users#show", :as => "user"
 
   resources :challenges do
-    resources :answers
+    resources :answers do
+      resources :reviews
+    end
   end
+
+  resources :reviews
+
   post "/create_gist", :to => "answers#create_gist"
 
   root :to => "home#index"

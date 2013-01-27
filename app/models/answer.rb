@@ -3,6 +3,7 @@ class Answer < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :challenge
+  has_many :reviews
 
   validates :challenge_id,
     :presence => true
